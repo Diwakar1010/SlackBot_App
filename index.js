@@ -1,14 +1,12 @@
 const { App } = require('@slack/bolt');
 require('dotenv').config()
 
-
 const app = new App({
     token: process.env.SLACK_BOT_TOKEN, 
     signingSecret: process.env.SLACK_SIGNING_SECRET, 
     appToken: process.env.SLACK_APP_TOKEN, 
     socketMode: true, 
 });
-
 
 app.command('/approval-test', async ({ ack, body, client }) => {
     await ack();
@@ -117,9 +115,3 @@ app.action(/(approve_request|reject_request)/, async ({ ack, body, client, actio
     await app.start();
     console.log('Slack app is running in Socket Mode!');
 })();
-
-
-
-
-
-
